@@ -97,18 +97,12 @@ function decodeLogo(value) {
 function escapeXml(value) {
   return value.replace(/[<>&'"]/g, (character) => {
     switch (character) {
-      case '<':
-        return '&lt;';
-      case '>':
-        return '&gt;';
-      case '&':
-        return '&amp;';
-      case "'":
-        return '&apos;';
-      case '"':
-        return '&quot;';
-      default:
-        return character;
+      case '<': return '&lt;';
+      case '>': return '&gt;';
+      case '&': return '&amp;';
+      case "'": return '&apos;';
+      case '"': return '&quot;';
+      default: return character;
     }
   });
 }
@@ -119,6 +113,7 @@ function replaceConfigValue(source, key, value) {
     fail(`Nilai ${key} tidak ditemukan di capacitor.config.ts.`);
   }
   return source.replace(pattern, (_match, prefix) => `${prefix}${JSON.stringify(value)},`);
+} // <--- INI KURUNG PENUTUP YANG TADI HILANG
 
 function setStringResource(xml, name, value) {
   const pattern = new RegExp(`(<string name="${name}">)[\\s\\S]*?(</string>)`);
